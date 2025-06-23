@@ -42,8 +42,8 @@ const menuItems = [
     text: 'Products', 
     icon: <ListIcon />, 
     subItems: [
-      { text: 'Add New Product', icon: <AddIcon sx={{ fontSize: 20 }} />, path: '/Products/AddNewProduct' },
-      { text: 'View Products', icon: <ListIcon sx={{ fontSize: 20 }} />, path: '/Products/ViewProduct' }
+      { text: 'Add New Product', icon: <AddIcon sx={{ fontSize: 20 }} />, path: '/products/addnewproducts' },
+      { text: 'View Products', icon: <ListIcon sx={{ fontSize: 20 }} />, path: '/products/viewproducts' }
     ]
   },
   { text: 'Outlets', icon: <StorefrontIcon />, path: '/outlets' },
