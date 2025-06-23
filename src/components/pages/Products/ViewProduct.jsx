@@ -6,10 +6,14 @@ import {
 
 // 🟩 Product Data
 const initialProducts = [
-    { id: 1, image: 'Pepsi.png', category: 'COLD DRINKS', name: 'PEPSI 750 ml', offer: 'NO OFFER', price: '100/-', recommended: 'no' },
-    { id: 2, image: 'dewcan.png', category: 'COLD DRINKS', name: 'MOUNTAIN DEW CAN', offer: 'NO OFFER', price: '100/-', recommended: 'no' },
-    { id: 3, image: 'Dew.png', category: 'COLD DRINKS', name: 'MOUNTAIN DEW', offer: 'NO OFFER', price: '100/-', recommended: 'no' },
-    { id: 4, image: 'spritecan.png', category: 'COLD DRINKS', name: 'SPRITE CAN', offer: 'NO OFFER', price: '100/-', recommended: 'no' },
+    { id: 1, image: '../src/assets/pepsi 750ml.jpeg', category: 'COLD DRINKS', name: 'PEPSI 750 ml', offer: 'NO OFFER', price: '30/-', recommended: 'no' },
+    { id: 2, image: '../src/assets/mountain due can.jpeg', category: 'COLD DRINKS', name: 'MOUNTAIN DEW CAN', offer: 'NO OFFER', price: '30/-', recommended: 'no' },
+    { id: 3, image: '../src/assets/mountain due.jpeg', category: 'COLD DRINKS', name: 'MOUNTAIN DEW', offer: 'NO OFFER', price: '50/-', recommended: 'no' },
+    { id: 4, image: '../src/assets/sprite can.jpeg', category: 'COLD DRINKS', name: 'SPRITE CAN', offer: 'NO OFFER', price: '30/-', recommended: 'no' },
+    { id: 5, image: '../src/assets/coca cola can.jpeg', category: 'COLD DRINKS', name: 'COCA COLA CAN', offer: 'NO OFFER', price: '30/-', recommended: 'no' },
+    { id: 6, image: '../src/assets/fanta can.jpeg', category: 'COLD DRINKS', name: 'FANTA CAN', offer: 'NO OFFER', price: '30/-', recommended: 'no' },
+    { id: 7, image: '../src/assets/limca soda.jpeg', category: 'COLD DRINKS', name: 'LIMCA', offer: 'NO OFFER', price: '60/-', recommended: 'no' },
+    { id: 8, image: '../src/assets/mirinda can.jpeg', category: 'COLD DRINKS', name: 'MIRINDA CAN', offer: 'NO OFFER', price: '40/-', recommended: 'no' },
     // Add more here...
 ];
 
