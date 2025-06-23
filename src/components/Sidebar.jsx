@@ -28,6 +28,8 @@ import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import SendIcon from '@mui/icons-material/Send';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import AddIcon from '@mui/icons-material/Add';
+import ListIcon from '@mui/icons-material/List';
 
 const drawerWidth = 240;
 const collapsedWidth = 70; // Adjusted for better spacing
@@ -36,7 +38,14 @@ const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
   { text: 'Categories', icon: <CategoryIcon />, path: '/categories' },
   { text: 'Sub Categories', icon: <CategoryIcon />, path: '/subcategories' },
-  { text: 'Products', icon: <StorefrontIcon />, path: '/products' },
+  { 
+    text: 'Products', 
+    icon: <ListIcon />, 
+    subItems: [
+      { text: 'Add New Product', icon: <AddIcon sx={{ fontSize: 20 }} />, path: '/Products/AddNewProduct' },
+      { text: 'View Products', icon: <ListIcon sx={{ fontSize: 20 }} />, path: '/Products/ViewProduct' }
+    ]
+  },
   { text: 'Outlets', icon: <StorefrontIcon />, path: '/outlets' },
   { text: 'Offers & Coupons', icon: <LocalOfferIcon />, path: '/offers' },
   {

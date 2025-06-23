@@ -6,7 +6,11 @@ import Navbar from './components/Navbar.jsx';
 import DashboardPage from './components/pages/Dashboard/DashboardPage.jsx';
 import CategoriesPage from './components/pages/Categories/CategoriesPage.jsx';
 import SubCategoriesPage from './components/pages/SubCategories/SubCategoriesPage.jsx';
-import ProductsPage from './components/pages/Products/ProductsPage.jsx';
+
+// Products
+import AddNewProduct from './components/pages/Products/AddNewProduct.jsx';
+import ViewProduct from './components/pages/Products/ViewProduct.jsx';
+
 import OutletsPage from './components/pages/Outlets/OutletsPage.jsx';
 import OffersPage from './components/pages/Offers/OffersPage.jsx';
 import UsersPage from './components/pages/Users/UsersPage.jsx';
@@ -54,7 +58,11 @@ function App() {
               <Route path="/" element={<DashboardPage />} />
               <Route path="/categories" element={<CategoriesPage />} />
               <Route path="/subcategories" element={<SubCategoriesPage />} />
-              <Route path="/products" element={<ProductsPage />} />
+              
+              {/* Products Routes */}
+              <Route path="/products/addnewproducts" element={<AddNewProduct />} />
+              <Route path="/products/viewproducts" element={<ViewProduct />} />
+
               <Route path="/outlets" element={<OutletsPage />} />
               <Route path="/offers" element={<OffersPage />} />
               
