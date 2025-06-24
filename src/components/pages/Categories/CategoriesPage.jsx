@@ -25,7 +25,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 const dummyData = [
   {name: 'CHINESE', img: '../src/assets/chinese.jpg'},
   {name: 'TANDOOR', img: '../src/assets/tandoor.jpg'},
-  { name: 'COLD DRINKS', img: '../src/assets/cold drinks.jpg'},
+  { name: 'COLD DRINKS', img: '../src/assets/colddrinks.jpg'},
   {name: 'DESSERTS', img: '../src/assets/deserts.jpg'},
   {name: 'ITALIAN',img: '../src/assets/italian.jpg'},
   {name: 'SOUTH INDIAN', img: '../src/assets/south-indian.jpg'},
@@ -125,9 +125,9 @@ function CategoriesPage() {
                     <TableRow key={index}>
                       <TableCell>
                         <img
-                          src={item.img}
-                          alt={item.name}
-                          style={{ width: 50, height: 50, borderRadius: 8 }}
+                            src={item.img}
+                            alt={item.name}
+                            style={{ width: '80px', height: '80px', borderRadius: '10px', objectFit: 'cover' }}
                         />
                       </TableCell>
                       <TableCell>{item.name}</TableCell>
