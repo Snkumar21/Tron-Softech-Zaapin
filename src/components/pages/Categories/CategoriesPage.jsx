@@ -25,7 +25,7 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 const dummyData = [
   {name: 'CHINESE', img: '../src/assets/chinese.jpg'},
   {name: 'TANDOOR', img: '../src/assets/tandoor.jpg'},
-  { name: 'COLD DRINKS', img: '../src/assets/colddrinks.jpg'},
+  { name: 'COLD DRINKS', img: '../src/assets/cold drinks.jpg'},
   {name: 'DESSERTS', img: '../src/assets/deserts.jpg'},
   {name: 'ITALIAN',img: '../src/assets/italian.jpg'},
   {name: 'SOUTH INDIAN', img: '../src/assets/south-indian.jpg'},
