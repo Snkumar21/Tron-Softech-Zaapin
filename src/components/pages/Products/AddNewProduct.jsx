@@ -9,6 +9,7 @@ const subCategories = ['-- Select Sub-Category --', 'Snacks', 'Juice'];
 const productTypes = ['VEG', 'NON-VEG'];
 const offers = ['-- No Offer --', '10% Off', 'Buy 1 Get 1'];
 const recommended = ['Yes', 'No'];
+const availableOutlet = ['-- Select Outlet --', 'Viman Nagar', 'Wagholi', 'Hadapsar', 'Kalyani Nagar', 'Koregaon Park', 'Kharadi'];
 
 const AddNewProduct = () => {
     const [form, setForm] = useState({
@@ -19,7 +20,7 @@ const AddNewProduct = () => {
         productCode: '',
         strikePrice: '',
         displayPrice: '',
-        availableOutlet: '',
+        availableOutlet: [],
         productSequence: '',
         productDescription: '',
         offer: '',
@@ -28,7 +29,14 @@ const AddNewProduct = () => {
     });
 
     const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+
+        if (name === 'availableOutlet') {
+            const selected = Array.from(e.target.selectedOptions, (option) => option.value);
+            setForm({ ...form, availableOutlet: selected });
+        } else {
+            setForm({ ...form, [name]: value });
+        }
     };
 
     const handleSubmit = (e) => {
@@ -141,12 +149,22 @@ const AddNewProduct = () => {
                         {/* Available in Outlet */}
                         <Grid item xs={12} sm={6}>
                             <TextField
+                                select
                                 fullWidth
                                 label="Available in Outlet"
                                 name="availableOutlet"
                                 value={form.availableOutlet}
                                 onChange={handleChange}
-                            />
+                                SelectProps={{
+                                    multiple: true
+                                }}
+                            >
+                                {availableOutlet.map((option) => (
+                                    <MenuItem key={option} value={option}>
+                                        {option}
+                                    </MenuItem>
+                                ))}
+                            </TextField>
                         </Grid>
 
                         {/* Product Sequence */}
