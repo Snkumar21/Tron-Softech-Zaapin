@@ -6,18 +6,27 @@ import Navbar from './components/Navbar.jsx';
 import DashboardPage from './components/pages/Dashboard/DashboardPage.jsx';
 import CategoriesPage from './components/pages/Categories/CategoriesPage.jsx';
 import SubCategoriesPage from './components/pages/SubCategories/SubCategoriesPage.jsx';
+import SectionsPage from './components/pages/Sections/SectionsPage.jsx';
+import OutletsPage from './components/pages/Outlets/OutletsPage.jsx';
+import OffersPage from './components/pages/Offers/OffersPage.jsx';
+import SettingsPage from './components/pages/Settings/SettingsPage.jsx';
 
 // Products
 import AddNewProduct from './components/pages/Products/AddNewProduct.jsx';
 import ViewProduct from './components/pages/Products/ViewProduct.jsx';
 
-import OutletsPage from './components/pages/Outlets/OutletsPage.jsx';
-import OffersPage from './components/pages/Offers/OffersPage.jsx';
-import UsersPage from './components/pages/Users/UsersPage.jsx';
-import SectionsPage from './components/pages/Sections/SectionsPage.jsx';
-import ContentsPage from './components/pages/Contents/ContentsPage.jsx';
-import ExpensesPage from './components/pages/Expenses/ExpensesPage.jsx';
-import SettingsPage from './components/pages/Settings/SettingsPage.jsx';
+// Users
+import AddNewUser from './components/pages/Users/AddNewUser.jsx';
+import ViewCustomer from './components/pages/Users/ViewCustomers.jsx';
+import ViewDeliveryBoy from './components/pages/Users/ViewDeliveryBoys.jsx';
+
+// Contents
+import AddNewContents from './components/pages/Contents/AddNewContent.jsx';
+import ViewContent from './components/pages/Contents/ViewContent.jsx';
+
+// Expenses
+import AddNewExpenses from './components/pages/Expenses/AddExpenses.jsx';
+import ViewExpenses from './components/pages/Expenses/ViewExpenses.jsx';
 
 // Order Pages
 import PendingOrdersPage from './components/pages/Orders/PendingOrdersPage.jsx';
@@ -74,10 +83,21 @@ function App() {
               <Route path="/orders/on-the-way" element={<DeliveryOnWayPage />} />
               <Route path="/orders/delivered" element={<DeliveredOrdersPage />} />
               
-              <Route path="/users" element={<UsersPage />} />
+              {/* Users Routes */}
+              <Route path="/users/addnewuser" element={<AddNewUser />} />
+              <Route path="/users/viewcustomers" element={<ViewCustomer />} />
+              <Route path="/users/viewdeliveryboy" element={<ViewDeliveryBoy />} />
+
               <Route path="/sections" element={<SectionsPage />} />
-              <Route path="/contents" element={<ContentsPage />} />
-              <Route path="/expenses" element={<ExpensesPage />} />
+
+              {/* Contents Routes */}
+              <Route path="/contents/addnewcontent" element={<AddNewContents />} />
+              <Route path="/contents/viewcontent" element={<ViewContent />} />
+
+              {/* Expenses Routes */}
+              <Route path="/expenses/addnewexpenses" element={<AddNewExpenses />} />
+              <Route path="/expenses/viewexpenses" element={<ViewExpenses />} />
+
               <Route path="/settings" element={<SettingsPage />} />
             </Routes>
           </Box>

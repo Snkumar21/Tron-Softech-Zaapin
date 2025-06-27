@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 
-function UsersPage() {
+function ViewDeliveryBoys() {
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Paper sx={{ p: 2 }}>
@@ -16,4 +16,4 @@ function UsersPage() {
   );
 }
 
-export default UsersPage; 
+export default ViewDeliveryBoys;

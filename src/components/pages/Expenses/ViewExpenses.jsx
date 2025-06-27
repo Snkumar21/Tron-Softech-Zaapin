@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 
-function ContentsPage() {
+function ViewExpenses() {
   return (
     <Box sx={{ flexGrow: 1, p: 3 }}>
       <Paper sx={{ p: 2 }}>
@@ -16,4 +16,4 @@ function ContentsPage() {
   );
 }
 
-export default ContentsPage; 
+export default ViewExpenses; 

@@ -60,22 +60,43 @@ const menuItems = [
       { text: 'Delivered Orders', icon: <SendIcon sx={{ fontSize: 20 }} />, path: '/orders/delivered' },
     ],
   },
-  { text: 'Users', icon: <PeopleIcon />, path: '/users' },
+  { 
+    text: 'Users',
+    icon: <PeopleIcon />,
+    subItems: [
+      { text: 'Add New User', icon: <AddIcon sx={{ fontSize: 20 }} />, path: '/users/addnewuser' },
+      { text: 'View Customers', icon: <ListIcon sx={{ fontSize: 20 }} />, path: '/users/viewcustomers' },
+      { text: 'View Delivery Boys', icon: <ListIcon sx={{ fontSize: 20 }} />, path: '/users/viewdeliveryboy' }
+    ],
+  },
   { text: 'Sections', icon: <ViewModuleIcon />, path: '/sections' },
-  { text: 'Contents', icon: <ViewModuleIcon />, path: '/contents' },
-  { text: 'Expenses', icon: <AttachMoneyIcon />, path: '/expenses' },
+  { 
+    text: 'Contents',
+    icon: <ViewModuleIcon />,
+    subItems: [
+      { text: 'Add New Content', icon: <AddIcon sx={{ fontSize: 20 }} />, path: '/contents/addnewcontent' },
+      { text: 'View Content', icon: <ListIcon sx={{ fontSize: 20 }} />, path: '/contents/viewcontent' }
+    ]
+  },
+  { text: 'Expenses', icon: <AttachMoneyIcon />,
+    subItems: [
+      { text: 'Add Expenses', icon: <AddIcon sx={{ fontSize: 20 }} />, path: '/expenses/addnewexpenses' },
+      { text: 'View Expenses', icon: <ListIcon sx={{ fontSize: 20 }} />, path: '/expenses/viewexpenses' }
+    ]
+  },
   { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
 ];
 
 function Sidebar({ collapsed }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [ordersOpen, setOrdersOpen] = useState(false);
+  const [openDropdowns, setOpenDropdowns] = useState({});
 
-  const handleToggleOrders = () => {
-    if (!collapsed) {
-      setOrdersOpen(!ordersOpen);
-    }
+  const handleToggle = (text) => {
+    setOpenDropdowns((prev) => ({
+      ...prev,
+      [text]: !prev[text]
+    }));
   };
 
   return (
@@ -108,7 +129,7 @@ function Sidebar({ collapsed }) {
               <Tooltip title={collapsed ? item.text : ''} placement="right">
                 <ListItem
                   button
-                  onClick={handleToggleOrders}
+                  onClick={() => handleToggle(item.text)} // ✅ toggle based on item text
                   sx={{
                     my: 1,
                     backgroundColor: 'transparent',
@@ -123,10 +144,11 @@ function Sidebar({ collapsed }) {
                     {item.icon}
                   </ListItemIcon>
                   {!collapsed && <ListItemText primary={item.text} />}
-                  {!collapsed && (ordersOpen ? <ExpandLess /> : <ExpandMore />)}
+                  {!collapsed && (openDropdowns[item.text] ? <ExpandLess /> : <ExpandMore />)}
                 </ListItem>
               </Tooltip>
-              <Collapse in={!collapsed && ordersOpen} timeout="auto" unmountOnExit>
+              
+              <Collapse in={!collapsed && openDropdowns[item.text]} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                   {item.subItems.map((subItem) => (
                     <ListItem
