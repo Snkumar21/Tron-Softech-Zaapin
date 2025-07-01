@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import {
     Box, Typography, Paper, TextField, MenuItem, Button, Grid
 } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-const categories = ['-- Select Category --', 'Food', 'Beverage'];
-const subCategories = ['-- Select Sub-Category --', 'Snacks', 'Juice'];
+const categories = ['Food', 'Beverage'];
+const subCategories = ['Snacks', 'Juice'];
 const productTypes = ['VEG', 'NON-VEG'];
 const offers = ['-- No Offer --', '10% Off', 'Buy 1 Get 1'];
 const recommended = ['Yes', 'No'];
-const availableOutlet = ['-- Select Outlet --', 'Viman Nagar', 'Wagholi', 'Hadapsar', 'Kalyani Nagar', 'Koregaon Park', 'Kharadi'];
+const availableOutlet = ['Viman Nagar', 'Wagholi', 'Hadapsar', 'Kalyani Nagar', 'Koregaon Park', 'Kharadi'];
 
 const AddNewProduct = () => {
     const [form, setForm] = useState({
@@ -30,19 +31,44 @@ const AddNewProduct = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        if (name === 'availableOutlet') {
-            const selected = Array.from(e.target.selectedOptions, (option) => option.value);
-            setForm({ ...form, availableOutlet: selected });
-        } else {
-            setForm({ ...form, [name]: value });
-        }
+        setForm({ ...form, [name]: value });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(form);
-        // submit logic here
+
+        // Convert numeric fields
+        const dataToSubmit = {
+            ...form,
+            strikePrice: Number(form.strikePrice),
+            displayPrice: Number(form.displayPrice),
+        };
+
+        try {
+            const response = await axios.post('http://localhost:5000/api/products', dataToSubmit);
+            console.log('✅ Product added:', response.data);
+            alert('Product added successfully!');
+
+            // Reset form
+            setForm({
+                category: '',
+                subCategory: '',
+                productType: '',
+                productName: '',
+                productCode: '',
+                strikePrice: '',
+                displayPrice: '',
+                availableOutlet: [],
+                productSequence: '',
+                productDescription: '',
+                offer: '',
+                recommended: '',
+                link: ''
+            });
+        } catch (error) {
+            console.error('❌ Error adding product:', error);
+            alert('Failed to add product. Please check the console.');
+        }
     };
 
     return (
@@ -57,13 +83,10 @@ const AddNewProduct = () => {
                         {/* Category */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                select
-                                fullWidth
-                                label="Category"
-                                name="category"
-                                value={form.category}
-                                onChange={handleChange}
+                                select fullWidth label="Category" name="category"
+                                value={form.category} onChange={handleChange}
                             >
+                                <MenuItem value="" disabled>-- Select Category --</MenuItem>
                                 {categories.map((option) => (
                                     <MenuItem key={option} value={option}>{option}</MenuItem>
                                 ))}
@@ -73,13 +96,10 @@ const AddNewProduct = () => {
                         {/* Sub Category */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                select
-                                fullWidth
-                                label="Sub-Category"
-                                name="subCategory"
-                                value={form.subCategory}
-                                onChange={handleChange}
+                                select fullWidth label="Sub-Category" name="subCategory"
+                                value={form.subCategory} onChange={handleChange}
                             >
+                                <MenuItem value="" disabled>-- Select Category --</MenuItem>
                                 {subCategories.map((option) => (
                                     <MenuItem key={option} value={option}>{option}</MenuItem>
                                 ))}
@@ -89,12 +109,8 @@ const AddNewProduct = () => {
                         {/* Product Type */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                select
-                                fullWidth
-                                label="Product Type"
-                                name="productType"
-                                value={form.productType}
-                                onChange={handleChange}
+                                select fullWidth label="Product Type" name="productType"
+                                value={form.productType} onChange={handleChange}
                             >
                                 {productTypes.map((option) => (
                                     <MenuItem key={option} value={option}>{option}</MenuItem>
@@ -105,64 +121,44 @@ const AddNewProduct = () => {
                         {/* Product Name */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                fullWidth
-                                label="Product Name"
-                                name="productName"
-                                value={form.productName}
-                                onChange={handleChange}
+                                fullWidth label="Product Name" name="productName"
+                                value={form.productName} onChange={handleChange}
                             />
                         </Grid>
 
                         {/* Product Code */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                fullWidth
-                                label="Product Code"
-                                name="productCode"
-                                value={form.productCode}
-                                onChange={handleChange}
+                                fullWidth label="Product Code" name="productCode"
+                                value={form.productCode} onChange={handleChange}
                             />
                         </Grid>
 
                         {/* Striked Price */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                fullWidth
-                                label="Striked Price (Rs.)"
-                                name="strikePrice"
-                                value={form.strikePrice}
-                                onChange={handleChange}
+                                fullWidth label="Striked Price (Rs.)" name="strikePrice"
+                                value={form.strikePrice} onChange={handleChange}
                             />
                         </Grid>
 
                         {/* Display Price */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                fullWidth
-                                label="Display Price (Rs.)"
-                                name="displayPrice"
-                                value={form.displayPrice}
-                                onChange={handleChange}
+                                fullWidth label="Display Price (Rs.)" name="displayPrice"
+                                value={form.displayPrice} onChange={handleChange}
                             />
                         </Grid>
 
-                        {/* Available in Outlet */}
+                        {/* Available Outlet (Multi-select) */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                select
-                                fullWidth
-                                label="Available in Outlet"
-                                name="availableOutlet"
-                                value={form.availableOutlet}
-                                onChange={handleChange}
-                                SelectProps={{
-                                    multiple: true
-                                }}
+                                select fullWidth label="Available in Outlet" name="availableOutlet"
+                                value={form.availableOutlet} onChange={handleChange}
+                                SelectProps={{ multiple: true }}
                             >
                                 {availableOutlet.map((option) => (
-                                    <MenuItem key={option} value={option}>
-                                        {option}
-                                    </MenuItem>
+                                    <MenuItem key={option} value={option}>{option}</MenuItem>
                                 ))}
                             </TextField>
                         </Grid>
@@ -170,36 +166,25 @@ const AddNewProduct = () => {
                         {/* Product Sequence */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                fullWidth
-                                label="Product Sequence"
-                                name="productSequence"
-                                value={form.productSequence}
-                                onChange={handleChange}
+                                fullWidth label="Product Sequence" name="productSequence"
+                                value={form.productSequence} onChange={handleChange}
                             />
                         </Grid>
 
-                        {/* Product Description */}
+                        {/* Description */}
                         <Grid item xs={12}>
                             <TextField
-                                fullWidth
-                                multiline
-                                minRows={3}
-                                label="Product Description"
-                                name="productDescription"
-                                value={form.productDescription}
+                                fullWidth multiline minRows={3} label="Product Description"
+                                name="productDescription" value={form.productDescription}
                                 onChange={handleChange}
                             />
                         </Grid>
 
-                        {/* Offer Available */}
+                        {/* Offer */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                select
-                                fullWidth
-                                label="Offer Available"
-                                name="offer"
-                                value={form.offer}
-                                onChange={handleChange}
+                                select fullWidth label="Offer Available" name="offer"
+                                value={form.offer} onChange={handleChange}
                             >
                                 {offers.map((option) => (
                                     <MenuItem key={option} value={option}>{option}</MenuItem>
@@ -210,12 +195,8 @@ const AddNewProduct = () => {
                         {/* Recommended */}
                         <Grid item xs={12} sm={6}>
                             <TextField
-                                select
-                                fullWidth
-                                label="Recommended?"
-                                name="recommended"
-                                value={form.recommended}
-                                onChange={handleChange}
+                                select fullWidth label="Recommended?" name="recommended"
+                                value={form.recommended} onChange={handleChange}
                             >
                                 {recommended.map((option) => (
                                     <MenuItem key={option} value={option}>{option}</MenuItem>
@@ -223,29 +204,20 @@ const AddNewProduct = () => {
                             </TextField>
                         </Grid>
 
-                        {/* Add Link */}
+                        {/* Link */}
                         <Grid item xs={12}>
                             <TextField
-                                fullWidth
-                                label="Add Link"
-                                name="link"
-                                value={form.link}
-                                onChange={handleChange}
+                                fullWidth label="Add Link" name="link"
+                                value={form.link} onChange={handleChange}
                             />
                         </Grid>
 
-                        {/* Submit Button */}
+                        {/* Submit */}
                         <Grid item xs={12}>
                             <Button
-                                variant="contained"
-                                type="submit"
+                                variant="contained" type="submit"
                                 startIcon={<CheckCircleIcon />}
-                                sx={{
-                                backgroundColor: '#fc8019',
-                                    '&:hover': {
-                                        backgroundColor: '#ff9d3b'
-                                    }
-                                }}
+                                sx={{ backgroundColor: '#fc8019', '&:hover': { backgroundColor: '#ff9d3b' } }}
                             >
                                 Submit
                             </Button>

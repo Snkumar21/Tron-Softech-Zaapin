@@ -88,8 +88,11 @@ function Dashboard() {
         <FormControl sx={{ minWidth: 200 }}>
           <Select defaultValue="" displayEmpty>
             <MenuItem value="">-- Select Outlet --</MenuItem>
-            <MenuItem value="1">Outlet 1</MenuItem>
-            <MenuItem value="2">Outlet 2</MenuItem>
+            <MenuItem value="1">Wagholi</MenuItem>
+            <MenuItem value="2">Kesanad</MenuItem>
+            <MenuItem value="3">Viman Nagar</MenuItem>
+            <MenuItem value="4">Kalyani Nagar</MenuItem>
+            <MenuItem value="5">Hadapsar</MenuItem>
           </Select>
         </FormControl>
       </Box>
