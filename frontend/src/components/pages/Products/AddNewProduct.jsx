@@ -45,7 +45,7 @@ const AddNewProduct = () => {
         };
 
         try {
-            const response = await axios.post('http://localhost:5000/api/products', dataToSubmit);
+            const response = await axios.post('http://localhost:5000/api/products', form);
             console.log('✅ Product added:', response.data);
             alert('Product added successfully!');
 
